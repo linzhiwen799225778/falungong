@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-gl.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/china.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/world.js"></script>
+
+</head>
+<body>
+    <div id="8a1e586c3ed748568a2f57ac00f2a5ad" style="width:900px; height:500px;"></div>
+    <script>
+		var canvas_8a1e586c3ed748568a2f57ac00f2a5ad = document.createElement('canvas');
+        var mapChart_8a1e586c3ed748568a2f57ac00f2a5ad = echarts.init(
+		     canvas_8a1e586c3ed748568a2f57ac00f2a5ad, 'white', {width: 4096, height: 2048, renderer: 'canvas'});
+        var mapOption_8a1e586c3ed748568a2f57ac00f2a5ad = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "map",
+            "name": "World Population",
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "mapType": "world",
+            "data": [
+                {
+                    "name": "\u7f8e\u56fd",
+                    "value": 1570583
+                },
+                {
+                    "name": "\u4fc4\u7f57\u65af",
+                    "value": 299941
+                },
+                {
+                    "name": "\u897f\u73ed\u7259",
+                    "value": 278803
+                },
+                {
+                    "name": "\u5df4\u897f",
+                    "value": 271885
+                },
+                {
+                    "name": "\u82f1\u56fd",
+                    "value": 250138
+                },
+                {
+                    "name": "\u610f\u5927\u5229",
+                    "value": 226699
+                },
+                {
+                    "name": "\u6cd5\u56fd",
+                    "value": 180933
+                },
+                {
+                    "name": "\u5fb7\u56fd",
+                    "value": 177778
+                },
+                {
+                    "name": "\u571f\u8033\u5176",
+                    "value": 151615
+                },
+                {
+                    "name": "\u4f0a\u6717",
+                    "value": 124603
+                },
+                {
+                    "name": "\u5370\u5ea6",
+                    "value": 106886
+                },
+                {
+                    "name": "\u79d8\u9c81",
+                    "value": 99483
+                },
+                {
+                    "name": "\u52a0\u62ff\u5927",
+                    "value": 80498
+                },
+                {
+                    "name": "\u6c99\u7279\u963f\u62c9\u4f2f",
+                    "value": 59854
+                },
+                {
+                    "name": "\u6bd4\u5229\u65f6",
+                    "value": 55791
+                },
+                {
+                    "name": "\u58a8\u897f\u54e5",
+                    "value": 54346
+                },
+                {
+                    "name": "\u667a\u5229",
+                    "value": 49579
+                },
+                {
+                    "name": "\u5df4\u57fa\u65af\u5766",
+                    "value": 45898
+                },
+                {
+                    "name": "\u8377\u5170",
+                    "value": 44449
+                },
+                {
+                    "name": "\u5361\u5854\u5c14",
+                    "value": 35606
+                },
+                {
+                    "name": "\u5384\u74dc\u591a\u5c14",
+                    "value": 34151
+                },
+                {
+                    "name": "\u767d\u4fc4\u7f57\u65af",
+                    "value": 31508
+                },
+                {
+                    "name": "\u745e\u5178",
+                    "value": 30799
+                },
+                {
+                    "name": "\u745e\u58eb",
+                    "value": 30618
+                },
+                {
+                    "name": "\u8461\u8404\u7259",
+                    "value": 29432
+                },
+                {
+                    "name": "\u65b0\u52a0\u5761",
+                    "value": 28794
+                },
+                {
+                    "name": "\u5b5f\u52a0\u62c9",
+                    "value": 25121
+                },
+                {
+                    "name": "\u963f\u8054\u914b",
+                    "value": 25063
+                },
+                {
+                    "name": "\u7231\u5c14\u5170",
+                    "value": 24251
+                },
+                {
+                    "name": "\u6ce2\u5170",
+                    "value": 19268
+                },
+                {
+                    "name": "\u4e4c\u514b\u5170",
+                    "value": 18876
+                },
+                {
+                    "name": "\u5370\u5ea6\u5c3c\u897f\u4e9a",
+                    "value": 18496
+                },
+                {
+                    "name": "\u5357\u975e",
+                    "value": 17200
+                },
+                {
+                    "name": "\u7f57\u9a6c\u5c3c\u4e9a",
+                    "value": 17191
+                },
+                {
+                    "name": "\u54e5\u4f26\u6bd4\u4e9a",
+                    "value": 16935
+                },
+                {
+                    "name": "\u79d1\u5a01\u7279",
+                    "value": 16764
+                },
+                {
+                    "name": "\u4ee5\u8272\u5217",
+                    "value": 16659
+                },
+                {
+                    "name": "\u65e5\u672c\u672c\u571f",
+                    "value": 16367
+                },
+                {
+                    "name": "\u5965\u5730\u5229",
+                    "value": 16321
+                },
+                {
+                    "name": "\u57c3\u53ca",
+                    "value": 13484
+                },
+                {
+                    "name": "\u591a\u7c73\u5c3c\u52a0",
+                    "value": 13223
+                },
+                {
+                    "name": "\u83f2\u5f8b\u5bbe",
+                    "value": 12942
+                },
+                {
+                    "name": "\u4e39\u9ea6",
+                    "value": 11242
+                },
+                {
+                    "name": "\u97e9\u56fd",
+                    "value": 11110
+                },
+                {
+                    "name": "\u585e\u5c14\u7ef4\u4e9a",
+                    "value": 10733
+                },
+                {
+                    "name": "\u5df4\u62ff\u9a6c",
+                    "value": 9867
+                },
+                {
+                    "name": "\u963f\u6839\u5ef7",
+                    "value": 8809
+                },
+                {
+                    "name": "\u6377\u514b",
+                    "value": 8647
+                },
+                {
+                    "name": "\u632a\u5a01",
+                    "value": 8267
+                },
+                {
+                    "name": "\u963f\u5bcc\u6c57",
+                    "value": 7653
+                },
+                {
+                    "name": "\u5df4\u6797",
+                    "value": 7532
+                },
+                {
+                    "name": "\u963f\u5c14\u53ca\u5229\u4e9a",
+                    "value": 7377
+                },
+                {
+                    "name": "\u6fb3\u5927\u5229\u4e9a",
+                    "value": 7079
+                },
+                {
+                    "name": "\u6469\u6d1b\u54e5",
+                    "value": 7023
+                },
+                {
+                    "name": "\u9a6c\u6765\u897f\u4e9a",
+                    "value": 6978
+                },
+                {
+                    "name": "\u54c8\u8428\u514b\u65af\u5766",
+                    "value": 6969
+                },
+                {
+                    "name": "\u5c3c\u65e5\u5229\u4e9a",
+                    "value": 6401
+                },
+                {
+                    "name": "\u82ac\u5170",
+                    "value": 6399
+                },
+                {
+                    "name": "\u6469\u5c14\u591a\u74e6",
+                    "value": 6340
+                },
+                {
+                    "name": "\u52a0\u7eb3",
+                    "value": 6096
+                },
+                {
+                    "name": "\u963f\u66fc",
+                    "value": 5671
+                },
+                {
+                    "name": "\u4e9a\u7f8e\u5c3c\u4e9a",
+                    "value": 5041
+                },
+                {
+                    "name": "\u73bb\u5229\u7ef4\u4e9a",
+                    "value": 4481
+                },
+                {
+                    "name": "\u5362\u68ee\u5821",
+                    "value": 3958
+                },
+                {
+                    "name": "\u4f0a\u62c9\u514b",
+                    "value": 3611
+                },
+                {
+                    "name": "\u5308\u7259\u5229",
+                    "value": 3598
+                },
+                {
+                    "name": "\u5580\u9ea6\u9686",
+                    "value": 3529
+                },
+                {
+                    "name": "\u963f\u585e\u62dc\u7586",
+                    "value": 3518
+                },
+                {
+                    "name": "\u6cf0\u56fd",
+                    "value": 3034
+                },
+                {
+                    "name": "\u6d2a\u90fd\u62c9\u65af",
+                    "value": 2955
+                },
+                {
+                    "name": "\u4e4c\u5179\u522b\u514b\u65af\u5766",
+                    "value": 2880
+                },
+                {
+                    "name": "\u51e0\u5185\u4e9a",
+                    "value": 2863
+                },
+                {
+                    "name": "\u5e0c\u814a",
+                    "value": 2840
+                },
+                {
+                    "name": "\u82cf\u4e39",
+                    "value": 2728
+                },
+                {
+                    "name": "\u585e\u5185\u52a0\u5c14",
+                    "value": 2617
+                },
+                {
+                    "name": "\u6ce2\u9ed1",
+                    "value": 2321
+                },
+                {
+                    "name": "\u4fdd\u52a0\u5229\u4e9a",
+                    "value": 2292
+                },
+                {
+                    "name": "\u514b\u7f57\u5730\u4e9a",
+                    "value": 2232
+                },
+                {
+                    "name": "\u79d1\u7279\u8fea\u74e6",
+                    "value": 2153
+                },
+                {
+                    "name": "\u5371\u5730\u9a6c\u62c9",
+                    "value": 2133
+                },
+                {
+                    "name": "\u5854\u5409\u514b\u65af\u5766",
+                    "value": 1936
+                },
+                {
+                    "name": "\u53e4\u5df4",
+                    "value": 1887
+                },
+                {
+                    "name": "\u5317\u9a6c\u5176\u987f",
+                    "value": 1839
+                },
+                {
+                    "name": "\u51b0\u5c9b",
+                    "value": 1802
+                },
+                {
+                    "name": "\u7231\u6c99\u5c3c\u4e9a",
+                    "value": 1791
+                },
+                {
+                    "name": "\u521a\u679c\uff08\u91d1\uff09",
+                    "value": 1731
+                },
+                {
+                    "name": "\u5409\u5e03\u63d0",
+                    "value": 1618
+                },
+                {
+                    "name": "\u7acb\u9676\u5b9b",
+                    "value": 1562
+                },
+                {
+                    "name": "\u65b0\u897f\u5170",
+                    "value": 1503
+                },
+                {
+                    "name": "\u52a0\u84ec",
+                    "value": 1502
+                },
+                {
+                    "name": "\u7d22\u9a6c\u91cc",
+                    "value": 1502
+                },
+                {
+                    "name": "\u8428\u5c14\u74e6\u591a",
+                    "value": 1498
+                },
+                {
+                    "name": "\u65af\u6d1b\u4f10\u514b",
+                    "value": 1495
+                },
+                {
+                    "name": "\u65af\u6d1b\u6587\u5c3c\u4e9a",
+                    "value": 1467
+                },
+                {
+                    "name": "\u5409\u5c14\u5409\u65af\u65af\u5766",
+                    "value": 1270
+                },
+                {
+                    "name": "\u9a6c\u5c14\u4ee3\u592b",
+                    "value": 1143
+                },
+                {
+                    "name": "\u7a81\u5c3c\u65af",
+                    "value": 1044
+                },
+                {
+                    "name": "\u51e0\u5185\u4e9a\u6bd4\u7ecd",
+                    "value": 1038
+                },
+                {
+                    "name": "\u65af\u91cc\u5170\u5361",
+                    "value": 1027
+                },
+                {
+                    "name": "\u62c9\u8131\u7ef4\u4e9a",
+                    "value": 1012
+                },
+                {
+                    "name": "\u80af\u5c3c\u4e9a",
+                    "value": 963
+                },
+                {
+                    "name": "\u9ece\u5df4\u5ae9",
+                    "value": 954
+                },
+                {
+                    "name": "\u963f\u5c14\u5df4\u5c3c\u4e9a",
+                    "value": 949
+                },
+                {
+                    "name": "\u585e\u6d66\u8def\u65af",
+                    "value": 918
+                },
+                {
+                    "name": "\u5c3c\u65e5\u5c14",
+                    "value": 914
+                },
+                {
+                    "name": "\u9a6c\u91cc",
+                    "value": 901
+                },
+                {
+                    "name": "\u54e5\u65af\u8fbe\u9ece\u52a0",
+                    "value": 882
+                },
+                {
+                    "name": "\u5df4\u62c9\u572d",
+                    "value": 829
+                },
+                {
+                    "name": "\u8d64\u9053\u51e0\u5185\u4e9a",
+                    "value": 825
+                },
+                {
+                    "name": "\u5e03\u57fa\u7eb3\u6cd5\u7d22",
+                    "value": 796
+                },
+                {
+                    "name": "\u8d5e\u6bd4\u4e9a",
+                    "value": 772
+                },
+                {
+                    "name": "\u5b89\u9053\u5c14",
+                    "value": 761
+                },
+                {
+                    "name": "\u59d4\u5185\u745e\u62c9",
+                    "value": 749
+                },
+                {
+                    "name": "\u4e4c\u62c9\u572d",
+                    "value": 738
+                },
+                {
+                    "name": "\u94bb\u77f3\u53f7\u90ae\u8f6e",
+                    "value": 712
+                },
+                {
+                    "name": "\u683c\u9c81\u5409\u4e9a",
+                    "value": 707
+                },
+                {
+                    "name": "\u5723\u9a6c\u529b\u8bfa",
+                    "value": 655
+                },
+                {
+                    "name": "\u7ea6\u65e6",
+                    "value": 649
+                },
+                {
+                    "name": "\u6d77\u5730",
+                    "value": 596
+                },
+                {
+                    "name": "\u9a6c\u8033\u4ed6",
+                    "value": 569
+                },
+                {
+                    "name": "\u4e4d\u5f97",
+                    "value": 545
+                },
+                {
+                    "name": "\u585e\u62c9\u5229\u6602",
+                    "value": 534
+                },
+                {
+                    "name": "\u7259\u4e70\u52a0",
+                    "value": 520
+                },
+                {
+                    "name": "\u5766\u6851\u5c3c\u4e9a",
+                    "value": 509
+                },
+                {
+                    "name": "\u521a\u679c\uff08\u5e03\uff09",
+                    "value": 420
+                },
+                {
+                    "name": "\u5c3c\u6cca\u5c14",
+                    "value": 402
+                },
+                {
+                    "name": "\u5df4\u52d2\u65af\u5766",
+                    "value": 391
+                },
+                {
+                    "name": "\u4e2d\u975e\u5171\u548c\u56fd",
+                    "value": 366
+                },
+                {
+                    "name": "\u57c3\u585e\u4fc4\u6bd4\u4e9a",
+                    "value": 365
+                },
+                {
+                    "name": "\u591a\u54e5",
+                    "value": 338
+                },
+                {
+                    "name": "\u4f5b\u5f97\u89d2",
+                    "value": 335
+                },
+                {
+                    "name": "\u6bdb\u91cc\u6c42\u65af",
+                    "value": 332
+                },
+                {
+                    "name": "\u9a6c\u8fbe\u52a0\u65af\u52a0",
+                    "value": 326
+                },
+                {
+                    "name": "\u8d8a\u5357",
+                    "value": 324
+                },
+                {
+                    "name": "\u9ed1\u5c71",
+                    "value": 324
+                },
+                {
+                    "name": "\u5362\u65fa\u8fbe",
+                    "value": 308
+                },
+                {
+                    "name": "\u4e4c\u5e72\u8fbe",
+                    "value": 260
+                },
+                {
+                    "name": "\u5c3c\u52a0\u62c9\u74dc",
+                    "value": 254
+                },
+                {
+                    "name": "\u5229\u6bd4\u91cc\u4e9a",
+                    "value": 233
+                },
+                {
+                    "name": "\u65af\u5a01\u58eb\u5170",
+                    "value": 208
+                },
+                {
+                    "name": "\u7f05\u7538",
+                    "value": 193
+                },
+                {
+                    "name": "\u4e5f\u95e8",
+                    "value": 167
+                },
+                {
+                    "name": "\u83ab\u6851\u6bd4\u514b",
+                    "value": 146
+                },
+                {
+                    "name": "\u6587\u83b1",
+                    "value": 141
+                },
+                {
+                    "name": "\u8499\u53e4",
+                    "value": 140
+                },
+                {
+                    "name": "\u6bdb\u91cc\u5854\u5c3c\u4e9a",
+                    "value": 131
+                },
+                {
+                    "name": "\u8d1d\u5b81",
+                    "value": 130
+                },
+                {
+                    "name": "\u572d\u4e9a\u90a3",
+                    "value": 125
+                },
+                {
+                    "name": "\u67ec\u57d4\u5be8",
+                    "value": 122
+                },
+                {
+                    "name": "\u7279\u7acb\u5c3c\u8fbe\u548c\u591a\u5df4\u54e5",
+                    "value": 116
+                },
+                {
+                    "name": "\u6469\u7eb3\u54e5",
+                    "value": 97
+                },
+                {
+                    "name": "\u5df4\u54c8\u9a6c",
+                    "value": 96
+                },
+                {
+                    "name": "\u5df4\u5df4\u591a\u65af",
+                    "value": 90
+                },
+                {
+                    "name": "\u5217\u652f\u6566\u58eb\u767b\u516c\u56fd",
+                    "value": 82
+                },
+                {
+                    "name": "\u9a6c\u62c9\u7ef4",
+                    "value": 70
+                },
+                {
+                    "name": "\u5229\u6bd4\u4e9a",
+                    "value": 68
+                },
+                {
+                    "name": "\u53d9\u5229\u4e9a",
+                    "value": 58
+                },
+                {
+                    "name": "\u5b89\u54e5\u62c9",
+                    "value": 52
+                },
+                {
+                    "name": "\u6d25\u5df4\u5e03\u97e6",
+                    "value": 46
+                },
+                {
+                    "name": "\u5e03\u9686\u8fea",
+                    "value": 42
+                },
+                {
+                    "name": "\u5384\u7acb\u7279\u91cc\u4e9a",
+                    "value": 39
+                },
+                {
+                    "name": "\u9a6c\u63d0\u5c3c\u514b\u5c9b",
+                    "value": 37
+                },
+                {
+                    "name": "\u535a\u8328\u74e6\u7eb3",
+                    "value": 25
+                },
+                {
+                    "name": "\u5b89\u63d0\u74dc\u548c\u5df4\u5e03\u8fbe",
+                    "value": 25
+                },
+                {
+                    "name": "\u4e1c\u5e1d\u6c76",
+                    "value": 24
+                },
+                {
+                    "name": "\u5188\u6bd4\u4e9a",
+                    "value": 24
+                },
+                {
+                    "name": "\u683c\u6797\u7eb3\u8fbe",
+                    "value": 22
+                },
+                {
+                    "name": "\u4e0d\u4e39",
+                    "value": 21
+                },
+                {
+                    "name": "\u8001\u631d",
+                    "value": 19
+                },
+                {
+                    "name": "\u5723\u5362\u897f\u4e9a",
+                    "value": 18
+                },
+                {
+                    "name": "\u6590\u6d4e",
+                    "value": 18
+                },
+                {
+                    "name": "\u4f2f\u5229\u5179",
+                    "value": 18
+                },
+                {
+                    "name": "\u5723\u6587\u68ee\u7279\u548c\u683c\u6797\u7eb3\u4e01\u65af",
+                    "value": 17
+                },
+                {
+                    "name": "\u7eb3\u7c73\u6bd4\u4e9a",
+                    "value": 16
+                },
+                {
+                    "name": "\u591a\u7c73\u5c3c\u514b",
+                    "value": 16
+                },
+                {
+                    "name": "\u5723\u57fa\u8328\u548c\u5c3c\u7ef4\u65af",
+                    "value": 15
+                },
+                {
+                    "name": "\u68b5\u8482\u5188",
+                    "value": 12
+                },
+                {
+                    "name": "\u585e\u820c\u5c14",
+                    "value": 11
+                },
+                {
+                    "name": "\u79d1\u6469\u7f57",
+                    "value": 11
+                },
+                {
+                    "name": "\u82cf\u91cc\u5357",
+                    "value": 11
+                },
+                {
+                    "name": "\u5df4\u5e03\u4e9a\u65b0\u51e0\u5185\u4e9a",
+                    "value": 8
+                },
+                {
+                    "name": "\u83b1\u7d22\u6258",
+                    "value": 1
+                }
+            ],
+            "roam": true,
+            "zoom": 1,
+            "showLegendSymbol": true,
+            "emphasis": {}
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "World Population"
+            ],
+            "selected": {
+                "World Population": true
+            },
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0
+    },
+    "visualMap": {
+        "show": true,
+        "type": "continuous",
+        "min": 1,
+        "max": 1570583,
+        "text": [
+            "max",
+            "min"
+        ],
+        "inRange": {
+            "color": [
+                "blue",
+                "yellow",
+                "orangered"
+            ]
+        },
+        "calculable": true,
+        "inverse": false,
+        "splitNumber": 5,
+        "orient": "vertical",
+        "showLabel": true,
+        "itemWidth": 20,
+        "itemHeight": 140,
+        "borderWidth": 0
+    },
+    "title": [
+        {
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        mapChart_8a1e586c3ed748568a2f57ac00f2a5ad.setOption(mapOption_8a1e586c3ed748568a2f57ac00f2a5ad);
+
+		var chart_8a1e586c3ed748568a2f57ac00f2a5ad = echarts.init(
+        document.getElementById('8a1e586c3ed748568a2f57ac00f2a5ad'), 'white', {renderer: 'canvas'});
+		var options_8a1e586c3ed748568a2f57ac00f2a5ad = {
+           "globe": {
+           "show": true,
+		   "baseTexture": mapChart_8a1e586c3ed748568a2f57ac00f2a5ad,
+           shading: 'lambert',
+            light: {
+                ambient: {
+                    intensity: 0.6
+                },
+                main: {
+                    intensity: 0.2
+                }
+             }
+
+		   }};
+		chart_8a1e586c3ed748568a2f57ac00f2a5ad.setOption(options_8a1e586c3ed748568a2f57ac00f2a5ad);
+    </script>
+</body>
+</html>

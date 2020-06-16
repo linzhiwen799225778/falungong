@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入js-->
+
+</head>
+<body>
+
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM   图标基于此容器生成 -->
+<div id="main" style="width: 800px;height:600px;"></div>
+
+<script type="text/javascript">
+
+    // 基于准备好的dom，初始化echarts实例
+    // 通过准备好的dom容器去生成一个echarts实例 myChart实例对象
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    let option = {
+        // 表格标题相关设置
+        title: {
+            text: 'Python2001入门示例',
+            show: true,
+            subtext: "我是副标题",
+            textStyle: {
+                color: "red",
+                fontStyle: "oblique"
+            },
+            subtextStyle: {
+                color: "blue",
+            }
+        },
+        // 悬浮提示框
+        tooltip: {
+            show: false,
+        },
+        // 选项卡
+        legend: {
+            data: ['销量', "销量2"]
+        },
+        // x轴数据
+        xAxis: {
+            position: "top",
+            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        // 表格展示的参数
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 49]
+        }, {
+            name: '销量2',
+            type: 'line',
+            data: [5, 20, 36, 10, 10, 49]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+</script>
+
+</body>
+</html>

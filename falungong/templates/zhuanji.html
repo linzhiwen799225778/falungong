@@ -1,0 +1,359 @@
+{% load static %}
+<script>
+    $(function () {
+        $("#bannerTable").jqGrid({
+            url: "{% url 'zhuanji:get_zhuanji' %}",
+            datatype: 'json',
+            cellEdit: true,
+            styleUI: "Bootstrap",
+            autowidth: true,
+            height:400,
+            editurl: "{% url 'zhuanji:option_zhuanji' %}",
+            pager: "#bannerPagerNew",
+            rowNum: 2,
+            rowList: [2, 3],
+            viewrecords: true,
+            subGrid:true,
+            toolbar:[true,'buttom'],
+            subGridRowExpanded:function(subgrid_id,row_id){
+                addsubGird(subgrid_id,row_id)
+            },
+            colNames: ["ID", "标题", '分数','作者','播音员','章节','简介','状态','封面', '操作'],
+            colModel: [
+                {name: "id", width:50,align: 'center'},
+                {name: "title", align: 'center',editable: true},
+                {name: "score", align: 'center',editable: true},
+                {name: "author", align: 'center',editable: true},
+                {name: "boyin", align: 'center',editable: true},
+                {name: "zhangjie", align: 'center'},
+                {name: "jianjie", align: 'center',editable: true},
+                {
+                    name: "statue",
+                    editable: true,
+                    edittype: 'select',
+                    align: 'center',
+                    formatter: function (value, options, rowObj) {
+                        console.log(value)
+                        if (value === true) {
+                            return '展示音频'
+                        } else {
+                            return '不展示音频'
+                        }
+                    },
+                    editoptions: {value: "1:展示文章;0:不展示文章"}
+                },{name: "pic", width:350,align: 'center',formatter:function (value, options, rowObj) {
+                        return "<img style=\"height: 60px;width: 240px\" src=\"/"+value+"\" alt=\"\">";
+                    }},
+                {
+                    name: "option",width:300, formatter: function (value, options, rowObj) {
+                        return "<button class=\"btn btn-warning\" data-dismiss=\"modal\" onclick=\"editzhuanji(" + rowObj.id + ")\"><span class=\"glyphicon glyphicon-edit\"></span> 修改</button> "+
+                                "<button class=\"btn btn-danger\" onclick=\"del(" + rowObj.id + ")\"><span class=\"glyphicon glyphicon-edit\"></span> 删除</button>"
+                    }, align: 'center'
+                },
+            ],
+
+        });
+        // 点击模态框保存按钮  去提交轮播图信息
+        $("#save").click(function () {
+            // 分别获取表单的值
+            let title = $("#upload_title").val();
+            let statu = $("#upload_status").val();
+            var status;
+            if (statu === '是') {
+                status = '1'
+            } else {
+                status = '0'
+            }
+            // 获取文件类型的数据
+            let file = $("#upload_pic")[0].files[0];
+            console.log(file);
+            let formData = new FormData();
+            formData.append("title", title);
+            formData.append("status", status);
+            formData.append("img", file);
+            $.ajax({
+                url: "{% url 'index:addlunbo' %}",
+                type: "post",
+                data: formData, // 通过formData传递文件类型的数据
+                // 使用formData传递数据必须指定 processData  contentType
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(data);
+                    // 判断添加是否成功  成功则刷新表格
+                    if (data === "success") {
+                        // 刷新表格
+                        alert('添加成功');
+                        $("#bannerTable").trigger("reloadGrid");
+                    }
+                }
+            });
+        })}
+    );
+
+    // 删除员工时需要知道我要删除的是哪一行  可以获取当前行所在的id
+    function del(emp_id) {
+        // 可以根据获取到的当前行的id去删除
+        $("#bannerTable").jqGrid('delGridRow', emp_id, {
+            reloadAfterSubmit: true
+        });
+    }
+
+    // 修改
+    function editzhuanji(emp_id) {
+        $("#bannerTable").jqGrid('editGridRow', emp_id, {
+            height: 300,
+            reloadAfterSubmit: true,
+        });
+    }
+
+    
+    //点击修改弹出模态框并且显示值
+    function showcontext(id) {
+        $('#bannerModals').modal('show');
+        var data=$('#bannerTable').jqGrid("getRowData", id);
+        $('#upload_title').val(data.title);
+        console.log(data);
+        KindEditor.create('#editor_id', {
+            uploadJson: "{% url 'context:uppic' %}",// 图片上传时的url
+            afterUpload : function(data) {
+			if (data.error == 0) {
+	           	 //data.url 处理
+                console.log(data.error)
+                alert("成功了快出来");
+			} else {
+			    console.log(data)
+				alert("error");
+			}
+		},
+            allowFileManager: true,         // 显示图片空间按钮
+            fileManagerJson: "{% url 'context:pic_history' %}",            // 浏览曾经上传过放入图片
+            afterBlur:function () {
+                this.sync()
+            }
+        }
+
+        );
+        KindEditor.html("#editor_id", data.neirong);
+    }
+            <!--模态框-->
+    function addcontext() {
+        $('#bannerModals').modal('show');
+        KindEditor.create('#editor_id', {
+            uploadJson: "{% url 'context:uppic' %}",// 图片上传时的url
+            afterUpload : function(data) {
+			if (data.error == 0) {
+	           	 //data.url 处理
+                console.log(data.error)
+                alert("成功了快出来");
+			} else {
+			    console.log(data)
+				alert("error");
+			}
+		},
+            allowFileManager: true,         // 显示图片空间按钮
+            fileManagerJson: "{% url 'context:pic_history' %}",            // 浏览曾经上传过放入图片
+            afterBlur:function () {
+                this.sync()
+            }
+        })
+    }
+    <!--模态框数据提交-->
+    function save() {
+        $.ajax({
+            url:"{% url 'context:save_context' %}",
+            type:'get',
+            datatype: 'json',
+            data:$('#bannerForm').serialize(),
+            success:function (data) {
+                if (data==='保存成功！'){$("#bannerTable").trigger("reloadGrid");}
+            }
+        })
+    }
+{#生成子表格#}
+function addsubGird(tableid,id) {
+    var newtableid=tableid+'table';
+    var newid=tableid+'page';
+    console.log(id,177)
+    $('#'+tableid).html('<table id="'+newtableid+'"></table>\n' + '    <div id="'+newid+'" style="width: auto;height: 50px"></div>')
+    $('#'+newtableid).jqGrid({
+        url: "{% url 'zhuanji:get_zhangjie' %}",
+        datatype: 'json',
+        cellEdit: true,
+        styleUI: "Bootstrap",
+        autowidth: true,
+        autoheight: true,
+        rowNum: 2,
+        rowList: [2, 3],
+        editurl:"{% url 'zhuanji:option_zhangjie' %}",
+        viewrecords: true,
+        pager: "#"+newid,
+        colNames: ['id','章节名','章节大小','音频','操作'],
+        colModel: [
+            {name:'id'},
+            {name:'zhangjie'},
+            {name:'zhangjie_size'},
+            {name:'url',width:300,formatter:function (value, options, rowObj) {
+                console.log(value);
+                return '<div><audio style="width: 350px;height: 30px" src="/'+value+'" controls="controls"></audio></div>'
+                }},
+            {name:'option',formatter(value, options, rowObj){
+                console.log(rowObj.id);
+                return "<button class=\"btn btn-danger\" onclick=\"delzhangjie("+rowObj.id+','+newtableid+")\"><span class=\"glyphicon glyphicon-edit\"></span> 删除</button>"
+                }}
+            ]
+    });
+    $('#'+newtableid).append('<button class=\"btn btn-danger\" onclick=\"addzhangjie('+tableid+','+id+')\"><span class=\"glyphicon glyphicon-edit\"></span> 添加章节</button>')
+}
+function delzhangjie(emp_id,newtableid) {
+        // 可以根据获取到的当前行的id去删除
+    var table=$(newtableid)[0].id;
+        // 可以根据获取到的当前行的id去删除
+    $("#"+table).jqGrid('delGridRow', emp_id, {
+            reloadAfterSubmit: true
+    })}
+function addzhangjie(tableid,id) {
+    console.log(tableid,id);
+    $('#bannerModals').modal('show')
+    $('#zhuanji').val(id)
+}
+function savezhangjie() {
+    // 分别获取表单的值
+    let title = $("#upload_title").val();
+    let statu = $("#statue").val();
+    let zhuanji=$('#zhuanji').val();
+    alert(zhuanji)
+    // 获取文件类型的数据
+    let file = $("#yinyue")[0].files[0];
+    console.log(file);
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("status", statu);
+    formData.append("yinyue", file);
+    formData.append("id", zhuanji);
+    $.ajax({
+        url: "{% url 'zhuanji:add_zhangjie' %}",
+        type: "post",
+        data: formData, // 通过formData传递文件类型的数据
+        // 使用formData传递数据必须指定 processData  contentType
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            console.log(data);
+            // 判断添加是否成功  成功则刷新表格
+            if (data === "success") {
+                // 刷新表格
+                alert('添加成功');
+                $("#bannerTable").trigger("reloadGrid");
+            }
+        }
+    });
+}
+</script>
+<body>
+
+<div class="page-header">
+    <h2>专辑管理</h2>
+{#    <audio src="/static/audio/3.mp3" controls="controls" style="width: 100px;height: 30px"></audio>#}
+</div>
+<ul class="nav nav-tabs " >
+    <li class="active">
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default">专辑信息</button>
+        </div>
+    </li>
+</ul>
+<div class="panel panel-default" style="padding: 40px">
+    <!-- jqgrid表格的容器 -->
+    <table id="bannerTable"></table>
+    <div id="bannerPagerNew" style="width: auto;height: 50px"></div>
+    <div class="alert alert-success" role="alert" id="addBannerMsg" style="display: none">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong id="msgShow"></strong>
+
+    </div>
+
+    <!--模态框的打开方式  可以使用modal方法打开 也可以通过指定data-target与data-toggle两个属性来打开指定的模态框 -->
+{#    <button class="btn btn-primary" data-aa="@456" data-whatever="@123" id="btn" data-toggle="modal"#}
+{#            data-target="#bannerModal">添加#}
+{#    </button>#}
+{#    <button class="btn btn-warning" id="edit" ><span class="glyphicon glyphicon-edit"></span> 修改</button>#}
+{#    <button class="btn btn-danger" id="del" >删除</button>#}
+</div>
+
+
+
+
+<!--模态框-->
+<div class="modal fade" id="bannerModals" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:750px">
+            <!--模态框标题-->
+            <div class="modal-header">
+                <!--
+                    用来关闭模态框的属性:data-dismiss="modal"
+                -->
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">编辑专辑信息</h4>
+            </div>
+
+            <!--模态框内容体-->
+            <div class="modal-body">
+                <!--模态框内容体-->
+                <form action="" id="bannerForm">
+                    <div class="modal-body form-horizontal">
+
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label">章节所属专辑id：</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="title" id="zhuanji" class="form-control"
+                               placeholder="专辑id" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label">章节：</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="title" id="upload_title" class="form-control"
+                                       placeholder="请输入文章标题">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label">音频：</label>
+                            <div class="col-sm-10">
+{#                                <input type="text" name="status" id="upload_status" class="form-control"#}
+{#                                       placeholder="请选择文件状态">#}
+                                <input type="file" name="yinyue" id="yinyue">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label">状态：</label>
+                            <div class="col-sm-10">
+{#                                <input type="text" name="status" id="upload_status" class="form-control"#}
+{#                                       placeholder="请选择文件状态">#}
+                                <select class="form-control" name="statue" id="statue">
+                                  <option value="1">展示文章</option>
+                                  <option value="0">不展示文章</option>
+                                </select>
+                            </div>
+                        </div>
+{#                        <div class="form-group ">#}
+{#                            <label class="col-sm-2 control-label">图片：</label>#}
+{#                            <div class="col-sm-10">#}
+{#                                <input type="file" name="pic" id="upload_pic" class="form-control" placeholder="">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        富文本框#}
+                    </div>
+                </form>
+            </div>
+            <!--模态页脚-->
+            <div class="modal-footer" id="modal_footer">
+                <button type="button" class="btn btn-primary" id="save" data-dismiss="modal" onclick="savezhangjie()">保存</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>商品后台管理系统</title>
+    <link rel="stylesheet" href="{% static 'boot/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'jqgrid/css/css/cupertino/jquery-ui-1.8.16.custom.css' %}">
+    <link rel="stylesheet" href="{% static 'jqgrid/css/ui.jqgrid.css' %}">
+    <script src="{% static 'boot/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'boot/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'jqgrid/js/i18n/grid.locale-cn.js' %}"></script>
+    <script src="{% static 'jqgrid/js/jquery.jqGrid.src.js' %}"></script>
+
+    <!--发送按钮倒计时代码-->
+    <script type="text/javascript">
+        var countdown = 60;
+        function settime(obj) {
+
+            if (countdown == 0) {
+                obj.removeAttribute("disabled");
+                obj.value = "免费获取验证码";
+                countdown = 60;
+                return;
+            } else {
+                if(countdown == 60){
+                    $.ajax({
+                    url: "{% url 'index:sendmsg' %}",
+                    type: "post",
+                    data:{
+                        mobile: $("#mobile").val()
+                    },
+                    success: function (data) {
+                        console.log(data);
+                    }
+                })
+                }
+                obj.setAttribute("disabled", true);
+                obj.value = "重新发送(" + countdown + ")";
+                countdown--;
+            }
+            setTimeout(function () {
+                    settime(obj)
+                }
+                , 1000)
+        }
+
+        /*$(function () {
+            // 根据用户输入的手机号发送验证码
+            $("#forcode").click(function () {
+
+                // 向后台发送ajax请求获取验证码
+                $.ajax({
+                    url: "/main/get_code/",
+                    type: "post",
+                    data:{
+                        mobile: $("#mobile").val()
+                    },
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+
+            })
+        })*/
+
+        function denglu(t) {
+            $.ajax(
+                {
+                    url: "{% url 'permission:login_logic' %}",
+                    type: 'post',
+                    data: {
+                        'phone': $('#mobile').val(),
+                        'code': $('#basic-url').val(),
+                        'name': $('#name').val(),
+                        'password': $('#password').val()
+                    },
+                    success: function (a) {
+                        alert(a);
+                        if (a === 'success') {
+                            location.href = "{% url 'index:show_index' %}"
+                        }
+                    }
+                })
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+
+<!--手机号码输入框代码-->
+<div class="container">
+    <div class="form-group">
+        <div class="col-lg-10">
+            <form id="loginForm" role="form" action="" method="post" class="form-horizontal">
+                <label for="mobile" class="">手机号码:</label>
+                <div class="input-group m-bot15">
+                    <input type="text" class="form-control" required id="mobile" name="mobile" placeholder="手机号码">
+                    <span class="input-group-btn">
+                         <input type="button" id="forcode" onclick="settime(this)" value="免费获取验证码" class="btn btn-success">
+                        </span>
+                </div>
+                <span id="msgDiv"></span>
+                <p class="help-block">请填写绑定手机号</p>
+                {#                <label for="basic-url" class="">用户名</label>#}
+                {#                <div class="input-group">#}
+                {#                    <input type="text" class="form-control" id="basic-url" minlength="5" name="name" required>#}
+                {#                    <span class="input-group-addon">没啥用</span>#}
+                {#                </div>#}
+                <label for="basic-url" class="">验证码：</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="basic-url" required name="code">
+                </div>
+
+                <p class="help-block"></p>
+                                <label for="basic-url" class="">用户名：</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="name" required name="name">
+                </div>
+                <p class="help-block"></p>
+                                <label for="basic-url" class="">密码：</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="password" required name="password">
+                </div>
+                <p class="help-block"></p>
+
+                <div class="input-group">
+{#                    <input class="btn btn-success" type="button" id="loginButtonId" onclick="denglu()" value="登录">#}
+                    <input type="button" id="loginButtonId" onclick="denglu()" value="登录" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'boot/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'jqgrid/css/css/cupertino/jquery-ui-1.8.16.custom.css' %}">
+    <link rel="stylesheet" href="{% static 'jqgrid/css/ui.jqgrid.css' %}">
+    <script src="{% static 'boot/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'boot/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'jqgrid/js/i18n/grid.locale-cn.js' %}"></script>
+    <script src="{% static 'jqgrid/js/jquery.jqGrid.src.js' %}"></script>
+    <script src="{% static 'echarts/echarts.min.js' %}"></script>
+    <!--地图需要额外的js支持-->
+    <script src="{% static 'echarts/china.js' %}"></script>
+    <!--富文本框的js支持-->
+    <script src="{% static 'kindeditor/kindeditor-all-min.js' %}"></script>
+    <script src="{% static 'kindeditor/lang/zh-CN.js' %}"></script>
+
+
+</head>
+<body>
+<!--导航条-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">持名法州管理系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">欢迎 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">退出登陆 <span class="glyphicon glyphicon-log-out"></span></a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!-- 主体 -->
+<div class="container-fluid">
+
+    <div class="col-sm-2">
+        <!-- 手风情 -->
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <!-- 手风情1 -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a style="text-decoration: none" class="collapsed" role="button" data-toggle="collapse"
+                           data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                           aria-controls="collapseOne">
+                            用户管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                    {% for foo in request.session.menu %}
+                        {% if foo.parentid == '1' %}
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">
+                                        <a href="Javascript:$('#change').load('{{ foo.url }}')" style="text-decoration: none">{{ foo.title }}</a>
+                                </button>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {#                  <div class="btn-group btn-group-justified" role="group" aria-label="...">#}
+                        {#                    <div class="btn-group" role="group">#}
+                        {#                        <button type="button" class="btn btn-default">#}
+                        {#                            <a href="Javascript:$('#change').load('/static/statichtml/line.html')" style="text-decoration: none">折线图</a>#}
+                        {#                        </button>#}
+                        {#                    </div>#}
+                        {#                  </div>#}
+
+{#                        <div class="btn-group btn-group-justified" role="group" aria-label="...">#}
+{#                            <div class="btn-group" role="group">#}
+{#                                <button type="button" class="btn btn-default">#}
+{#                                    <a href="Javascript:$('#change').load('{% static 'statichtml/map.html' %}')"#}
+{#                                       style="text-decoration: none">地图</a>#}
+{#                                </button>#}
+{#                            </div>#}
+{#                        </div>#}
+                    </div>
+                </div>
+            </div>
+            <!-- 手风情2 -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a style="text-decoration: none" class="collapsed" role="button" data-toggle="collapse"
+                           data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                           aria-controls="collapseTwo">
+                            文章管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        {% for foo in request.session.menu %}
+                        {% if foo.parentid == '2' %}
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">
+                                    <a href="Javascript:$('#change').load('{{ foo.url }}')"
+                                       style="text-decoration: none">{{ foo.title }}</a>
+                                </button>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- 手风情3 -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a style="text-decoration: none" class="collapsed" role="button" data-toggle="collapse"
+                           data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                           aria-controls="collapseThree">
+                            专辑管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                        {% for foo in request.session.menu %}
+                        {% if foo.parentid == '3' %}
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">
+                                    <a href="Javascript:$('#change').load('{{ foo.url }}')"
+                                       style="text-decoration: none">{{ foo.title }}</a>
+                                </button>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- 手风情4 -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" style="text-decoration: none" data-toggle="collapse"
+                           data-parent="#accordion" href="#collapseFore" aria-expanded="false"
+                           aria-controls="collapseThree">
+                            轮播图管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFore" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                        {% for foo in request.session.menu %}
+                        {% if foo.parentid == '4' %}
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default">
+                                    <a href="Javascript:$('#change').load('{{ foo.url }}')"
+                                       style="text-decoration: none">{{ foo.title }}</a>
+                                </button>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-10" id="change">
+        <!-- 巨幕 -->
+        <div class="jumbotron">
+            <h2>欢迎来到持名法州后台管理系统</h2>
+        </div>
+        <!-- 轮播图 -->
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="{% static 'img/lunbo01.png' %}" alt="...">
+                    <div class="carousel-caption">
+                        轮播1
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="{% static 'img/lunbo02.png' %}" alt="...">
+                    <div class="carousel-caption">
+                        轮播2
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="{% static 'img/lunbo03.png' %}" alt="...">
+                    <div class="carousel-caption">
+                        轮播3
+                    </div>
+                </div>
+                ...
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<br><br><br><br><br><br><br>
+
+</body>
+</html>
